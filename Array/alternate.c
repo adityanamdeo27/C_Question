@@ -1,19 +1,31 @@
-#include<stdio.h>
-int main(){
-    int arr[] = {5,-7,8,1,-3,-2};
-    int n = sizeof(arr)/sizeof(arr[0]);
-    int start=0,next=n-1;
-    for(int i=0;i<n/2;i++){
-        while (arr[i]>0 && start<next)
-            start++;
-        while (arr[i]<0 && start<next)
-            next++;
-        if(arr[start]<arr[next]){
-            int temp = arr[start];
-            
-        }
+#include <stdio.h>
+
+int main() {
+    int arr[] = {1, 2, 3, -4, -1, 4};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int pos[100], neg[100];
+    int p = 0, q = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] >= 0)
+            pos[p++] = arr[i];
+        else
+            neg[q++] = arr[i];
     }
-    for(int i=0;i<n;i++)
-        printf("%d",arr[i]);
+    int i = 0, j = 0, k = 0;
+    while (i < p && j < q) {
+        arr[k++] = pos[i++];
+        arr[k++] = neg[j++];
+    }
+    //Extra
+    while (i < p) {
+        arr[k++] = pos[i++];
+    }
+    while (j < q) {
+        arr[k++] = neg[j++];
+    }
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
     return 0;
 }
